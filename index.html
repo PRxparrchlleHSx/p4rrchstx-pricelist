@@ -43,6 +43,7 @@ svg{flex:0 0 auto}
 --body:'Inter','MADEEvolveEvo',sans-serif;
 }
 
+/* ===== VIDEO BACKGROUND — FIXED, GPU ACCELERATED ===== */
 #video-bg{
   position:fixed;top:0;left:0;width:100vw;height:100vh;
   object-fit:cover;object-position:center center;
@@ -72,7 +73,7 @@ svg{flex:0 0 auto}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(255,31,46,.35),0 0 40px rgba(255,31,46,.15)}50%{box-shadow:0 0 30px rgba(255,31,46,.6),0 0 60px rgba(255,31,46,.25)}}
 @keyframes redFlash{0%,100%{text-shadow:0 0 12px rgba(255,31,46,.6),0 0 24px rgba(255,31,46,.3)}50%{text-shadow:0 0 20px rgba(255,31,46,1),0 0 40px rgba(255,31,46,.6)}}
 
-/* ===== ONLINE BADGE — HIJAU KEMERAHAN ===== */
+/* ===== ONLINE BADGE — WEB ONLINE 24/7 (HIJAU KEMERAHAN) ===== */
 .online-badge{
   display:inline-flex;align-items:center;gap:6px;
   padding:3px 9px 3px 7px;
@@ -81,7 +82,7 @@ svg{flex:0 0 auto}
   background:linear-gradient(90deg,rgba(34,197,94,.12),rgba(255,31,46,.10));
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   box-shadow:0 0 12px rgba(34,197,94,.35),0 0 20px rgba(255,31,46,.25);
-  font-family:var(--head);font-size:.55rem;font-weight:800;letter-spacing:.8px;
+  font-family:var(--head);font-size:.5rem;font-weight:800;letter-spacing:.6px;
   text-transform:uppercase;color:#ffd0c5;white-space:nowrap;margin-top:5px;
   transform:translateZ(0);will-change:transform;
 }
@@ -392,7 +393,8 @@ color:#ffbcc0;font-size:.8rem;line-height:1.6;display:flex;gap:8px;align-items:f
    PERFORMANCE BOOST — 60-120FPS
    ============================================ */
 .brand-mark,.unmute-btn,.eyebrow,.hero-logo,.hero h1,.hero h1 span,.hero-tag,
-.cta,.glass,.tab,.product,.buy,.promo-banner,.info-card,.channel,.about,.contact,.modal-box,.nav-btn{
+.cta,.glass,.tab,.product,.buy,.promo-banner,.info-card,.channel,
+.about,.contact,.modal-box,.nav-btn{
   transform:translateZ(0);-webkit-transform:translateZ(0);
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
 }
@@ -400,7 +402,6 @@ color:#ffbcc0;font-size:.8rem;line-height:1.6;display:flex;gap:8px;align-items:f
 .video-shade,.lightning-bg{contain:strict}
 html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 body{overscroll-behavior-y:contain}
-
 @media (max-width:768px){
   .glass,.topbar,.product,.info-card,.modal-box{
     backdrop-filter:blur(10px) saturate(120%)!important;
@@ -465,7 +466,7 @@ body.scrolling .online-dot::after{
 <nav class="topbar">
 <a class="brand" href="#home">
 <div class="brand-mark"><img src="https://files.catbox.moe/a502tu.png" alt="PRX! P4RRCH H-STx!"></div>
-<div class="brand-name">PRX! P4RRCH H-STx!<small>OFFICIAL STORE</small><span class="online-badge"><span class="online-dot"></span><span>ONLINE</span></span></div>
+<div class="brand-name">PRX! P4RRCH H-STx!<small>OFFICIAL STORE</small><span class="online-badge"><span class="online-dot"></span><span>WEB ONLINE 24/7</span></span></div>
 </a>
 <div class="nav-actions">
 <button class="nav-btn" id="open-info" type="button">
@@ -819,4 +820,4 @@ document.addEventListener('touchstart', e=>{
 render();
 </script>
 </body>
-   </html>
+</html>
