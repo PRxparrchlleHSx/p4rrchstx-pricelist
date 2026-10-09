@@ -10,11 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   FONT: MADE Evolve Sans Bold EVO
-   Dipake CUMA buat: judul, brand, harga, tombol, section title
-   Body text / paragraf / list tetep Inter biar readable
-   ============================================ */
 @font-face {
   font-family: 'MADEEvolveEvo';
   src: url('https://files.catbox.moe/i0yc7r.otf') format('opentype');
@@ -41,22 +36,33 @@ svg{flex:0 0 auto}
 --text:#f5f5f7;--muted:#a8a8b2;--dim:#6c6c78;
 --red:#ff1f2e;--red-2:#ff5a63;--red-deep:#b3000a;
 --silver:#d4d6dc;--white:#fff;
+--green:#22c55e;--green-2:#86efac;--green-glow:rgba(34,197,94,.45);--green-bg:rgba(34,197,94,.08);--green-line:rgba(34,197,94,.5);
 --shadow:0 24px 80px rgba(0,0,0,.55);
-/* DISPLAY & HEAD: MADE Evolve Evo (buat judul, brand, harga, tombol) */
 --display:'MADEEvolveEvo','Orbitron',sans-serif;
 --head:'MADEEvolveEvo','Rajdhani',sans-serif;
-/* BODY: Inter (buat paragraf, deskripsi, list, channel) */
 --body:'Inter','MADEEvolveEvo',sans-serif;
 }
 
-#video-bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-5;background:#050508;opacity:1}
-.video-shade{position:fixed;inset:0;z-index:-4;pointer-events:none;
-background:radial-gradient(circle at 50% 15%,rgba(255,31,46,.10),transparent 50%),
-linear-gradient(180deg,rgba(5,5,8,.20),rgba(5,5,8,.45) 55%,rgba(5,5,8,.70))}
-.video-noise{position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:.04;
-background-image:radial-gradient(rgba(255,255,255,.8) .6px,transparent .6px);background-size:5px 5px}
+#video-bg{
+  position:fixed;top:0;left:0;width:100vw;height:100vh;
+  object-fit:cover;object-position:center center;
+  z-index:-5;background:#050508;opacity:1;pointer-events:none;
+  transform:translateZ(0);-webkit-transform:translateZ(0);
+  will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+.video-shade{
+  position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-4;pointer-events:none;
+  background:radial-gradient(circle at 50% 15%,rgba(255,31,46,.10),transparent 50%),
+  linear-gradient(180deg,rgba(5,5,8,.20),rgba(5,5,8,.45) 55%,rgba(5,5,8,.70));
+  transform:translateZ(0);will-change:transform;
+}
+.video-noise{
+  position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-3;pointer-events:none;opacity:.04;
+  background-image:radial-gradient(rgba(255,255,255,.8) .6px,transparent .6px);background-size:5px 5px;
+  transform:translateZ(0);will-change:transform;
+}
 
-.lightning-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.15}
+.lightning-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.15;transform:translateZ(0)}
 .lightning-bg svg{width:100%;height:100%}
 .lightning-bg path{fill:none;stroke:#ff1f2e;stroke-width:1.5;filter:drop-shadow(0 0 8px #ff1f2e);animation:boltFlash 5s infinite}
 .lightning-bg path:nth-child(2){stroke:#fff;stroke-width:1;animation-delay:1.8s;filter:drop-shadow(0 0 6px #fff)}
@@ -65,6 +71,32 @@ background-image:radial-gradient(rgba(255,255,255,.8) .6px,transparent .6px);bac
 
 @keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(255,31,46,.35),0 0 40px rgba(255,31,46,.15)}50%{box-shadow:0 0 30px rgba(255,31,46,.6),0 0 60px rgba(255,31,46,.25)}}
 @keyframes redFlash{0%,100%{text-shadow:0 0 12px rgba(255,31,46,.6),0 0 24px rgba(255,31,46,.3)}50%{text-shadow:0 0 20px rgba(255,31,46,1),0 0 40px rgba(255,31,46,.6)}}
+
+/* ===== ONLINE BADGE — HIJAU KEMERAHAN ===== */
+.online-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 9px 3px 7px;
+  border:1px solid rgba(255,31,46,.55);
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(34,197,94,.12),rgba(255,31,46,.10));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 0 12px rgba(34,197,94,.35),0 0 20px rgba(255,31,46,.25);
+  font-family:var(--head);font-size:.55rem;font-weight:800;letter-spacing:.8px;
+  text-transform:uppercase;color:#ffd0c5;white-space:nowrap;margin-top:5px;
+  transform:translateZ(0);will-change:transform;
+}
+.online-dot{
+  position:relative;width:6px;height:6px;border-radius:50%;
+  background:#22c55e;
+  box-shadow:0 0 6px #22c55e,0 0 12px rgba(34,197,94,.6),0 0 18px rgba(255,31,46,.4);
+  flex:0 0 auto;
+}
+.online-dot::after{
+  content:"";position:absolute;inset:-3px;border-radius:50%;
+  border:1.5px solid #22c55e;opacity:.6;
+  animation:onlinePulse 1.6s ease-out infinite;
+}
+@keyframes onlinePulse{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.6);opacity:0}}
 
 .container{width:min(1200px,calc(100% - 32px));margin:auto}
 
@@ -81,13 +113,14 @@ overflow:hidden;flex:0 0 auto;animation:glowPulse 3s ease-in-out infinite}
 .brand-mark img{width:100%;height:100%;object-fit:contain;padding:4px}
 .brand-name{font-family:var(--display);font-size:1.05rem;letter-spacing:.5px;font-weight:800;
 background:linear-gradient(90deg,#fff 0%,#d4d6dc 40%,#ff5a63 100%);
--webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;line-height:1.1}
-.brand-name small{display:block;font-size:.62rem;letter-spacing:1.5px;color:var(--red-2);font-weight:700;margin-top:2px;-webkit-text-fill-color:var(--red-2);font-family:var(--body)}
-.nav-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;line-height:1.1;
+display:flex;flex-direction:column;align-items:flex-start}
+.brand-name small{display:block;font-size:.62rem;letter-spacing:1.5px;color:var(--red-2);font-weight:700;margin-top:2px;-webkit-text-fill-color:var(--red-2);font-family:var(--head)}
+.nav-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
 
 .nav-btn{position:relative;display:inline-flex;align-items:center;gap:6px;
 border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);
-padding:9px 14px;border-radius:11px;cursor:pointer;transition:.25s ease;font-weight:600;font-size:.85rem;overflow:visible;z-index:1;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--body)}
+padding:9px 14px;border-radius:11px;cursor:pointer;transition:.25s ease;font-weight:600;font-size:.85rem;overflow:visible;z-index:1;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--head)}
 .nav-btn svg{width:14px;height:14px;color:var(--red-2);position:relative;z-index:2;transition:.25s ease}
 .nav-btn span{position:relative;z-index:2}
 .nav-btn::before{content:"";position:absolute;left:-8px;top:-8px;right:-8px;bottom:-8px;border-radius:18px;
@@ -131,22 +164,24 @@ border:2px solid #ff1f2e;animation:audioPulse 1.6s ease-out infinite;pointer-eve
 .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;
 border:1px solid rgba(255,31,46,.35);border-radius:999px;background:rgba(8,8,12,.55);
 backdrop-filter:blur(14px);color:#ffbcc0;font-size:.75rem;font-weight:800;
-letter-spacing:1.2px;text-transform:uppercase;box-shadow:0 0 20px rgba(255,31,46,.2);font-family:var(--body)}
+letter-spacing:1.2px;text-transform:uppercase;box-shadow:0 0 20px rgba(255,31,46,.2);font-family:var(--head)}
 .eyebrow svg{width:12px;height:12px;color:var(--red)}
 .hero-logo{width:min(320px,70%);margin:22px auto 8px;
 filter:drop-shadow(0 0 30px rgba(255,31,46,.55)) drop-shadow(0 0 60px rgba(255,31,46,.3));
 animation:glowPulse 3.5s ease-in-out infinite}
-.hero h1{margin:6px 0 14px;font-family:var(--display);font-size:clamp(2.6rem,7vw,5rem);
+.hero h1{margin:6px 0 14px;font-family:var(--display);font-size:clamp(2.2rem,6vw,4.5rem);
 line-height:.95;letter-spacing:-.5px;color:#fff;font-weight:900;
 text-shadow:0 0 30px rgba(255,31,46,.5),0 0 60px rgba(255,31,46,.3)}
 .hero h1 span{background:linear-gradient(90deg,var(--red),var(--red-2),#fff);
 -webkit-background-clip:text;background-clip:text;color:transparent;animation:redFlash 3s ease-in-out infinite}
-.hero-tag{display:inline-block;margin-top:6px;padding:8px 18px;
+.hero-tag{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 18px;
 border:1px dashed rgba(255,31,46,.5);border-radius:10px;
 font-family:var(--head);font-size:1.15rem;font-weight:700;letter-spacing:2px;
 color:#ffbcc0;text-transform:uppercase;background:rgba(8,8,12,.5);backdrop-filter:blur(8px)}
+.hero-tag svg{width:14px;height:14px;color:var(--red)}
 .hero p{max-width:680px;margin:20px auto 0;color:#d0d0d8;font-size:clamp(.95rem,2vw,1.08rem);text-shadow:0 2px 8px rgba(0,0,0,.8);font-family:var(--body)}
-.hero-actions{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-actions{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
+
 .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;
 padding:13px 22px;border-radius:13px;border:1px solid var(--line);
 cursor:pointer;font-weight:800;transition:.25s ease;font-size:.95rem;font-family:var(--head)}
@@ -172,7 +207,7 @@ background:linear-gradient(90deg,transparent,rgba(255,31,46,.5),transparent)}
 .section-head{text-align:center;margin-bottom:28px}
 .section-kicker{color:var(--red-2);text-transform:uppercase;letter-spacing:2px;
 font-size:.7rem;font-weight:900;text-shadow:0 0 12px rgba(255,31,46,.6);
-display:inline-flex;align-items:center;gap:6px;justify-content:center;font-family:var(--body)}
+display:inline-flex;align-items:center;gap:6px;justify-content:center;font-family:var(--head)}
 .section-kicker svg{width:12px;height:12px;color:var(--red)}
 .section-title{margin-top:6px;font-family:var(--display);font-weight:800;
 font-size:clamp(1.9rem,4.5vw,3rem);line-height:1;color:#fff;
@@ -195,7 +230,7 @@ border:1px solid rgba(255,31,46,.4);box-shadow:0 0 18px rgba(255,31,46,.25) inse
 .tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
 border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);
 padding:10px 15px;border-radius:999px;cursor:pointer;font-size:.82rem;
-font-weight:800;transition:.25s ease;white-space:nowrap;backdrop-filter:blur(8px);font-family:var(--body)}
+font-weight:800;transition:.25s ease;white-space:nowrap;backdrop-filter:blur(8px);font-family:var(--head)}
 .tab svg{width:12px;height:12px;opacity:.7}
 .tab:hover{color:#fff;border-color:rgba(255,31,46,.45);background:rgba(255,31,46,.12)}
 .tab.active{color:#fff;border-color:transparent;
@@ -228,7 +263,7 @@ background:linear-gradient(160deg,rgba(20,20,28,.7),rgba(12,12,20,.8))}
 .product-badge{display:inline-flex;align-items:center;gap:4px;
 font-size:.62rem;font-weight:900;letter-spacing:1px;color:#ffbcc0;
 padding:5px 9px;border-radius:8px;background:rgba(255,31,46,.18);
-border:1px solid rgba(255,31,46,.35);text-transform:uppercase;font-family:var(--body)}
+border:1px solid rgba(255,31,46,.35);text-transform:uppercase;font-family:var(--head)}
 .product-badge svg{width:10px;height:10px}
 .product-brand{color:var(--dim);font-size:.68rem;font-family:var(--display);letter-spacing:1px;font-weight:700}
 .product h3{margin-top:14px;font-size:.94rem;line-height:1.35;color:#fff;
@@ -236,7 +271,7 @@ font-family:var(--head);font-weight:700;letter-spacing:.2px;position:relative;z-
 .product-desc{margin-top:8px;color:#c8c8d0;font-size:.76rem;line-height:1.5;
 position:relative;z-index:1;flex:1;text-shadow:0 1px 3px rgba(0,0,0,.8);font-family:var(--body)}
 .price{margin-top:12px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;position:relative;z-index:1}
-.old{color:var(--dim);text-decoration:line-through;font-size:.78rem;font-family:var(--body)}
+.old{color:var(--dim);text-decoration:line-through;font-size:.78rem;font-family:var(--display)}
 .new{font-family:var(--display);font-size:1.5rem;font-weight:900;color:#fff;
 text-shadow:0 0 15px rgba(255,31,46,.9),0 2px 6px rgba(0,0,0,.9)}
 .buy{margin-top:auto;width:100%;border:0;padding:11px;border-radius:11px;
@@ -260,7 +295,7 @@ background:linear-gradient(90deg,rgba(255,31,46,.15),rgba(255,31,46,.05));
 backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 box-shadow:0 0 25px rgba(255,31,46,.2) inset}
 .promo-banner svg{width:24px;height:24px;color:var(--red-2);filter:drop-shadow(0 0 8px var(--red))}
-.promo-banner .txt{font-family:var(--body);font-weight:700;font-size:.95rem;letter-spacing:.5px;color:#ffbcc0}
+.promo-banner .txt{font-family:var(--head);font-weight:700;font-size:.95rem;letter-spacing:.5px;color:#ffbcc0}
 .promo-banner .txt b{color:#fff}
 
 .info-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:12px}
@@ -288,7 +323,7 @@ background:rgba(255,255,255,.06);backdrop-filter:blur(8px);transition:.25s ease;
 .about-badges span{display:inline-flex;align-items:center;gap:6px;
 padding:6px 12px;border-radius:8px;font-size:.75rem;font-weight:800;
 background:rgba(255,31,46,.12);border:1px solid rgba(255,31,46,.35);
-color:#ffbcc0;letter-spacing:.5px;font-family:var(--body)}
+color:#ffbcc0;letter-spacing:.5px;font-family:var(--head)}
 .about-badges svg{width:12px;height:12px;color:var(--red)}
 
 .contact{text-align:center;padding:36px}
@@ -352,6 +387,46 @@ color:#ffbcc0;font-size:.8rem;line-height:1.6;display:flex;gap:8px;align-items:f
 .product-grid,.features{grid-template-columns:1fr}
 .hero h1{font-size:2rem}
 }
+
+/* ============================================
+   PERFORMANCE BOOST — 60-120FPS
+   ============================================ */
+.brand-mark,.unmute-btn,.eyebrow,.hero-logo,.hero h1,.hero h1 span,.hero-tag,
+.cta,.glass,.tab,.product,.buy,.promo-banner,.info-card,.channel,.about,.contact,.modal-box,.nav-btn{
+  transform:translateZ(0);-webkit-transform:translateZ(0);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+#video-bg,.video-shade,.video-noise,.lightning-bg{contain:layout style}
+.video-shade,.lightning-bg{contain:strict}
+html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+body{overscroll-behavior-y:contain}
+
+@media (max-width:768px){
+  .glass,.topbar,.product,.info-card,.modal-box{
+    backdrop-filter:blur(10px) saturate(120%)!important;
+    -webkit-backdrop-filter:blur(10px) saturate(120%)!important;
+  }
+  .nav-btn,.tab,.online-badge,.eyebrow,.hero-tag{
+    backdrop-filter:blur(6px)!important;
+    -webkit-backdrop-filter:blur(6px)!important;
+  }
+  .hero-logo{animation:none}
+  .brand-mark{animation:none}
+  #video-bg{will-change:auto}
+}
+body.scrolling .hero-logo,
+body.scrolling .brand-mark,
+body.scrolling .online-dot::after{
+  animation-play-state:paused;
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -390,7 +465,7 @@ color:#ffbcc0;font-size:.8rem;line-height:1.6;display:flex;gap:8px;align-items:f
 <nav class="topbar">
 <a class="brand" href="#home">
 <div class="brand-mark"><img src="https://files.catbox.moe/a502tu.png" alt="PRX! P4RRCH H-STx!"></div>
-<div class="brand-name">PRX! P4RRCH H-STx!<small>OFFICIAL STORE</small></div>
+<div class="brand-name">PRX! P4RRCH H-STx!<small>OFFICIAL STORE</small><span class="online-badge"><span class="online-dot"></span><span>ONLINE</span></span></div>
 </a>
 <div class="nav-actions">
 <button class="nav-btn" id="open-info" type="button">
@@ -651,9 +726,7 @@ const categories = [
 {key:'stab', label:'STABILIZER × MEGABUNDLES', icon:ICONS.shield}
 ];
 
-/* NOMOR WA ADMIN */
 const WA_NUMBER = '628389886997';
-
 const tabsEl = document.getElementById('tabs');
 const panelsEl = document.getElementById('panels');
 const infoModal = document.getElementById('info-modal');
@@ -675,7 +748,7 @@ function render(){
   panelsEl.innerHTML = categories.map((c,i)=>{
     const items = products.filter(p=>p.cat===c.key);
     const promo = c.key==='seleb' ? `<div class="promo-banner">${ICONS.star}<div class="txt">PROMO: Buy <b>3 Set Andro Seleb</b> — GRATIS <b>1 Set Andro Seleb</b> (bebas pilih)</div></div>` : '';
-    return `<div class="panel${i===0?' active':''}" data-panel="${c.key}">${promo}<div style="margin-bottom:16px;color:var(--muted);font-size:.82rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.8);font-family:var(--body)">${c.label}</div><div class="product-grid">${items.map(createCard).join('')}</div></div>`;
+    return `<div class="panel${i===0?' active':''}" data-panel="${c.key}">${promo}<div style="margin-bottom:16px;color:var(--muted);font-size:.82rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.8);font-family:var(--head)">${c.label}</div><div class="product-grid">${items.map(createCard).join('')}</div></div>`;
   }).join('');
 }
 
@@ -705,6 +778,15 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeInfo(); });
 
 const bgVideo = document.getElementById('video-bg');
 if(bgVideo){ bgVideo.play().catch(()=>{}); }
+
+let scrollTimer = null;
+window.addEventListener('scroll', () => {
+  document.body.classList.add('scrolling');
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(() => {
+    document.body.classList.remove('scrolling');
+  }, 150);
+}, { passive: true });
 
 const bgm = document.getElementById('bgm');
 const unmuteBtn = document.getElementById('unmute-btn');
@@ -737,4 +819,4 @@ document.addEventListener('touchstart', e=>{
 render();
 </script>
 </body>
-  </html>
+   </html>
